@@ -43,3 +43,20 @@ Aligned with:
 - Improved security posture across distributed sites
 - Reduced identity-related incidents
 - Scalable identity framework for growth
+
+## Architecture Diagram
+```mermaid
+flowchart LR
+    A[On-Prem Active Directory] -->|Sync| B[Azure AD Connect]
+    B --> C[Microsoft Entra ID]
+
+    C --> D[Microsoft 365]
+    C --> E[SSO Applications]
+    C --> F[Conditional Access Policies]
+
+    G[User Devices] -->|Login| C
+    H[Admins] -->|RBAC| C
+
+    F -->|MFA Enforced| G
+    F -->|Block Legacy Auth| E
+```
